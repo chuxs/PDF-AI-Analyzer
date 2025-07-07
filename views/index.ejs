@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/50bf1045f2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style/style.css">
+    <title>PDF AI analyzer</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#home"> <img src="images/RemoveBackground.png"> </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>Extract, Summarize and Analyze your PDF file with <p class="blurred">AI</p></h1>
+            <p>Experience the powere of Gemini AI</p>
+            <button class="cta-btn"><a href="#feat">Get Started Below</a></button>
+        </section>
+
+        <section class="features" id="feat">
+            <div class="feature-grid">
+              
+                <!-- <div class="feature-card feature-nobk">
+                    <img src="images/sampleimage.png" alt="No Background">
+                </div> -->
+
+                <div class="feature-btn">                 
+                    <form action="/submit" method="POST" class="image-content" id="image-content-id" enctype="multipart/form-data">
+                       <!-- upload pdf file button -->
+                       <label for="image_inputID" class="cta-btn-upload" id="cta-btn-upload-id">Upload</label>
+
+                       <input type="file" id="image_inputID" name="image_inputName" style="display: none;">
+                                           
+                       <!-- Erase backgound button -->
+                       <input class="feature-card titleTextBox" placeholder="Add your prompt for the PDF file" name="postTitle" > </input>
+
+                       <label class="cta-btn-upload cta-btn-rmbk" id="cta-btn-download" onclick="imageDownload()">Download</label> 
+                    </form>
+                </div>
+            
+                <div class="feature-card feature-bkless">
+                    <!-- <div class="image-content" id="image-content-id" enctype="multipart/form-data" >
+
+                    </div> -->
+                </div>
+               
+            </div>
+        </section>  
+
+
+    </main>
+    <script src="/js/script.js"></script>
+</body>
+</html>
