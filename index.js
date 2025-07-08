@@ -12,7 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 var imageServer = "";
 // const API_URL = "https://picsart-remove-background2.p.rapidapi.com/removebg";
-const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg"
+// const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg"
+const API_key = process.env.API_KEY;
 
 
 app.set("view engine", "ejs");

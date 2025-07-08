@@ -31,23 +31,25 @@
                 </div> -->
 
                 <div class="feature-btn">                 
-                    <form action="/submit" method="POST" class="image-content" id="image-content-id" enctype="multipart/form-data">
+                    <form action="/submit" method="POST" class="image-content" enctype="multipart/form-data">
                        <!-- upload pdf file button -->
-                       <label for="image_inputID" class="cta-btn-upload" id="cta-btn-upload-id">Upload</label>
+                       <label for="file_inputID" class="cta-btn-upload" id="cta-btn-upload-id">Upload PDF file</label>
 
-                       <input type="file" id="image_inputID" name="image_inputName" style="display: none;">
+                       <input type="file" id="file_inputID" name="file_inputName" style="display: none;" accept="application/pdf">
                                            
                        <!-- Erase backgound button -->
-                       <input class="feature-card titleTextBox" placeholder="Add your prompt for the PDF file" name="postTitle" > </input>
+                       <input class="feature-card titleTextBox" placeholder="Add your prompt here" name="postTitle" > </input>
 
-                       <label class="cta-btn-upload cta-btn-rmbk" id="cta-btn-download" onclick="imageDownload()">Download</label> 
+                       <label class="cta-btn-upload cta-btn-rmbk" id="cta-btn-download" onclick="imageDownload()">Send</label> 
                     </form>
                 </div>
             
                 <div class="feature-card feature-bkless">
-                    <!-- <div class="image-content" id="image-content-id" enctype="multipart/form-data" >
-
-                    </div> -->
+                    <p id="pdf-name"></p>
+                    
+                    <div class="image-content" id="image-content-id" enctype="multipart/form-data" >
+                        
+                    </div>
                 </div>
                
             </div>
