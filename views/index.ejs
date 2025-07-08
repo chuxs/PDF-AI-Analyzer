@@ -34,22 +34,19 @@
                     <form action="/submit" method="POST" class="pdf-action-form" enctype="multipart/form-data">
                        <!-- upload pdf file button -->
                        <label for="file_inputID" class="cta-btn-upload" id="cta-btn-upload-id">Upload PDF file</label>
-
                        <input type="file" id="file_inputID" name="file_inputName" style="display: none;" accept="application/pdf">
                                            
-                       <!-- Erase backgound button -->
-                       <input class="titleTextBox" placeholder="Add your prompt here" name="postTitle" > </input>
-
-                       <label class="cta-btn-upload cta-btn-rmbk" id="cta-btn-download" onclick="imageDownload()">Send</label> 
+                       <!-- Enter prompt -->
+                       <input class="titleTextBox" placeholder="Add your prompt here" name="postTitle"> </input>
+                       
+                       <button class="cta-btn-analyze" id="cta-btn-submit">Send</button> 
                     </form>
                 </div>
             
                 <div class="feature-card feature-bkless">
                     <p id="pdf-name"></p>
                     
-                    <iframe class="pdf-content" id="pdf-content-id" enctype="multipart/form-data" >
-                        
-                    </iframe>
+                    <iframe class="pdf-content" id="pdf-content-id" enctype="multipart/form-data" > </iframe>
                 </div>
                
             </div>

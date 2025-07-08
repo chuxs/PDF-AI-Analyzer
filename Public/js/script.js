@@ -13,3 +13,5 @@ function handleFiles() {
     pdfDisplay.src = actualPdfFIle;
 
 }
+
+const analyzePdfButton = document.querySelector(".cta-btn-analyze");

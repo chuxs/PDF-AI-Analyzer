@@ -5,15 +5,17 @@ import { fileURLToPath } from "url";
 import axios from "axios";
 import multer from "multer";
 import FormData from "form-data";
+import { GoogleGenAI } from "@google/genai";
 
 const app = express();
 const port = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-var imageServer = "";
+// var imageServer = "";
 // const API_URL = "https://picsart-remove-background2.p.rapidapi.com/removebg";
 // const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg"
-const API_key = process.env.API_KEY;
+const API_KEY = process.env.API_KEY;
+const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 
 app.set("view engine", "ejs");
@@ -24,6 +26,10 @@ app.use(express.static(path.join(__dirname, "Public")));
 
 app.get("/", (req, res) => {
     res.render("index.ejs");
+});
+
+app.post("/sumbit",  (req, res) => {
+    console.log("Call gets to this point");
 });
 
 app.listen(port, () => {
