@@ -12,11 +12,12 @@ const port = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // var imageServer = "";
-// const API_URL = "https://picsart-remove-background2.p.rapidapi.com/removebg";
+const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 // const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg"
 const API_KEY = process.env.API_KEY;
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
+const upload = multer({ storage: multer.memoryStorage() });
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -28,8 +29,43 @@ app.get("/", (req, res) => {
     res.render("index.ejs");
 });
 
-app.post("/sumbit",  (req, res) => {
-    console.log("Call gets to this point");
+app.post("/analyze", upload.single('file_inputName'), async (req, res) => {
+
+    const uploadedfile = req.file;
+
+    // console.log(uploadedfile);
+
+    // const data = new FormData();
+    // data.append('pdfFile', uploadedfile.buffer, uploadedfile.originalname);
+
+    const base64PDF = uploadedfile.toString("base64");
+
+    const body = {
+        contents: [
+          { text: "Summarize this document" },
+
+          {
+            inlineData: {
+              mimeType: 'application/pdf',
+            //  data: data.getBuffer().toString('base64'),
+            //  data: Buffer.from(uploadedfile.buffer).toString('base64')
+              data: base64PDF,
+            }
+          }
+        ]
+      };
+
+    try {
+        const apiPDFHandler = await axios.post(`${API_URL}?key=AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg`, body, {
+            headers: { 'Content-Type': 'application/json' } 
+          });
+          const result = apiPDFHandler.data;
+          console.log(result);
+        //   res.render("index.ejs", { result : result.data.url });
+    } catch (error) {
+        // res.render("index.ejs", { result: error.message });
+        console.log(error.message);
+    }
 });
 
 app.listen(port, () => {

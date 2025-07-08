@@ -31,15 +31,15 @@
                 </div> -->
 
                 <div class="feature-btn">                 
-                    <form action="/submit" method="POST" class="pdf-action-form" enctype="multipart/form-data">
+                    <form action="/analyze" method="POST" class="pdf-action-form" enctype="multipart/form-data">
                        <!-- upload pdf file button -->
                        <label for="file_inputID" class="cta-btn-upload" id="cta-btn-upload-id">Upload PDF file</label>
                        <input type="file" id="file_inputID" name="file_inputName" style="display: none;" accept="application/pdf">
                                            
                        <!-- Enter prompt -->
                        <input class="titleTextBox" placeholder="Add your prompt here" name="postTitle"> </input>
-                       
-                       <button class="cta-btn-analyze" id="cta-btn-submit">Send</button> 
+
+                       <button type="submit" class="cta-btn-analyze" id="cta-btn-submit">Send</button> 
                     </form>
                 </div>
             
