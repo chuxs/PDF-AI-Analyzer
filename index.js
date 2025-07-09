@@ -31,37 +31,56 @@ app.get("/", (req, res) => {
 
 app.post("/analyze", upload.single('file_inputName'), async (req, res) => {
 
-    const uploadedfile = req.file;
-
+   
     // console.log(uploadedfile);
+
 
     // const data = new FormData();
     // data.append('pdfFile', uploadedfile.buffer, uploadedfile.originalname);
 
-    const base64PDF = uploadedfile.toString("base64");
+    // const contents = {
+    //     contents: [
+    //       { text: "Summarize this document" },
 
-    const body = {
-        contents: [
-          { text: "Summarize this document" },
-
-          {
-            inlineData: {
-              mimeType: 'application/pdf',
-            //  data: data.getBuffer().toString('base64'),
-            //  data: Buffer.from(uploadedfile.buffer).toString('base64')
-              data: base64PDF,
-            }
-          }
-        ]
-      };
+    //       {
+    //         inlineData: {
+    //           mimeType: 'application/pdf',
+    //         //  data: data.getBuffer().toString('base64'),
+    //         //  data: Buffer.from(uploadedfile.buffer).toString('base64')
+    //           data: base64PDF,
+    //         }
+    //       }
+    //     ]
+    //   };
 
     try {
-        const apiPDFHandler = await axios.post(`${API_URL}?key=AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg`, body, {
-            headers: { 'Content-Type': 'application/json' } 
-          });
-          const result = apiPDFHandler.data;
-          console.log(result);
-        //   res.render("index.ejs", { result : result.data.url });
+
+      const uploadedfile = req.file;
+      
+      const base64PDF = uploadedfile.buffer.toString("base64");
+
+      const contents = {
+        contents: [{
+          parts: [
+            { text: "Analyze this PDF:" },
+            { 
+              inlineData: {
+                mimeType: req.file.mimetype,
+                data: base64PDF
+              }
+            }
+          ]
+        }]
+       };
+
+      const apiPDFHandler = await axios.post(`${API_URL}?key=${API_KEY}`, contents, 
+          {
+            headers: {'Content-Type': 'application/json'}
+           }
+      );
+      console.log(apiPDFHandler.data);
+      //   res.render("index.ejs", { result : result.data.url });
+
     } catch (error) {
         // res.render("index.ejs", { result: error.message });
         console.log(error.message);
