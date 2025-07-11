@@ -4,8 +4,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import axios from "axios";
 import multer from "multer";
-import FormData from "form-data";
 import { GoogleGenAI } from "@google/genai";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,6 +25,17 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "Public")));
+
+const firebaseConfig = {
+  // ...
+  storageBucket: 'temporary-pdf-store.firebasestorage.app'
+};
+
+// Initialize Firebase
+const storeBucket = initializeApp(firebaseConfig);
+
+// Initialize Cloud Storage and get a reference to the service
+const storage = getStorage(storeBucket);
 
 app.get("/", (req, res) => {
     res.render("index.ejs", { result: null });
