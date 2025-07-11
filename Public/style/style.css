@@ -122,7 +122,7 @@ nav {
 
 /* Features section */
 .features {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
 }
 
 .features h2 {
@@ -144,6 +144,8 @@ nav {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+
 
 .feature-btn{
     padding: 2rem;
@@ -171,6 +173,21 @@ nav {
 .feature-card p{
     font-size: small;
 }
+
+.features-output {
+    padding: 1rem 1rem;
+    /* width: 80%; */
+    align-items: center;
+    /* justify-content: center; */
+    justify-items: center;
+    text-align: center;
+    margin: 0 10%;
+    background: white;
+    border-radius:10px;
+    border: 1px solid #1d1b1b;
+    box-shadow: 0 2px 5px rgba(0,0,0,1);
+}
+
 
 .pdf-action-form {
     display: grid;
@@ -229,6 +246,13 @@ nav {
 .loading{
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
+}
+
+.blog-content{
+    white-space: pre-wrap; /* important for wrapping long text and preserving line breaks */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: justify;
 }
 
 

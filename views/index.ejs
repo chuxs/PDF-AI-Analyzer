@@ -52,6 +52,15 @@
             </div>
         </section>  
 
+        <section class="features-output feature-card-output" id="feat">
+            <!-- <textarea class="feature-card-output" placeholder="The output of your prompt will be displayed here!">     </textarea> -->
+             <% if (!result) { %>
+                <p class="blog-content"> Your output will be displayed here</p>
+             <% } else { %>
+                <p class="blog-content"><%= result %></p>
+             <% } %>
+        </section>
+
 
     </main>
     <script src="/js/script.js"></script>

@@ -13,8 +13,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // var imageServer = "";
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
-// const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg"
-const API_KEY = process.env.API_KEY;
+const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg"
+// const API_KEY = process.env.API_KEY;
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 const upload = multer({ storage: multer.memoryStorage() });
@@ -26,11 +26,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "Public")));
 
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render("index.ejs", { result: null });
 });
 
 app.post("/analyze", upload.single('file_inputName'), async (req, res) => {
-
    
     // console.log(uploadedfile);
 
@@ -56,30 +55,33 @@ app.post("/analyze", upload.single('file_inputName'), async (req, res) => {
     try {
 
       const uploadedfile = req.file;
+
+      const userPrompt = req.body["postTitle"];
       
       const base64PDF = uploadedfile.buffer.toString("base64");
 
-      const contents = {
-        contents: [{
-          parts: [
-            { text: "Analyze this PDF:" },
-            { 
-              inlineData: {
-                mimeType: req.file.mimetype,
-                data: base64PDF
-              }
-            }
-          ]
-        }]
-       };
+      const payload =  {
+      contents: [
+        {
+          role: 'user',
+          parts: [ 
+            {
+              inline_data: {
+                mime_type: "application/pdf",
+                data: base64PDF,
+              },
+            },
+            { text: `${userPrompt}` },
+          ],
+        },
+      ],
+    };
 
-      const apiPDFHandler = await axios.post(`${API_URL}?key=${API_KEY}`, contents, 
-          {
-            headers: {'Content-Type': 'application/json'}
-           }
+      const apiPDFHandler = await axios.post(`${API_URL}?key=${API_KEY}`, payload, 
+          {headers: {'Content-Type': 'application/json'}}
       );
-      console.log(apiPDFHandler.data);
-      //   res.render("index.ejs", { result : result.data.url });
+      console.log(apiPDFHandler.data.candidates[0].content.parts[0].text);
+        res.render("index.ejs", { result : apiPDFHandler.data.candidates[0].content.parts[0].text});
 
     } catch (error) {
         // res.render("index.ejs", { result: error.message });
