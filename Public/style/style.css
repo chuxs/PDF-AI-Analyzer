@@ -74,7 +74,7 @@ nav {
 }
 
 .cta-btn-upload{
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 3.8rem;
     width: 100%;
     border: none;
     border-radius: 16px;
@@ -195,6 +195,15 @@ nav {
     justify-content: center;
     align-items: center;
     height: 100%; /* Adjust as needed */
+    margin-top: 1rem;
+}
+
+.pdf-action-upload {
+    display: grid;
+    /* gap: 1rem; */
+    justify-content: center;
+    align-items: center;
+    height: fit-content; /* Adjust as needed */
 }
 
 #pdf-name{
