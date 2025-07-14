@@ -44,6 +44,10 @@ const storeBucket = initializeApp(firebaseConfig);
 // Initialize Cloud Storage and get a reference to the service
 const storage = getStorage(storeBucket);
 
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
 app.get("/", (req, res) => {
   res.render("index.ejs", { result: null });
 });
@@ -137,8 +141,5 @@ app.post("/analyze", upload.single("file_inputName"), async (req, res) => {
 });
 
 //remove the calling of listen and export function
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
 
 // module.exports = app;
