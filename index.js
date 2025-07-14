@@ -139,3 +139,5 @@ app.post("/analyze", upload.single("file_inputName"), async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+module.exports = app;
