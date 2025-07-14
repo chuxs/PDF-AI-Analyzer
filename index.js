@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
   res.render("index.ejs", { result: null });
 });
 
-app.post("/upload", upload.single("file_inputName"), async (req, res) => {});
+// app.post("/upload", upload.single("file_inputName"), async (req, res) => {});
 
 app.post("/analyze", upload.single("file_inputName"), async (req, res) => {
   console.log(req.file.size);
