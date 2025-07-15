@@ -19,7 +19,7 @@ const API_URL =
 const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg";
 const upload = multer({ storage: multer.memoryStorage() });
 const randomFileID = uuidv4();
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+const ai = new GoogleGenAI({ apiKey: API_KEY }); // Initialize Google GenAI with your API key
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
