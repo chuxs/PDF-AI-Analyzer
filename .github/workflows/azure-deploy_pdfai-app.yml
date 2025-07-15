@@ -53,4 +53,4 @@ jobs:
           app-name: 'pdfAi-app'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_16598DEEBFC64B3090EC0F854BB3151D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_28D96775EE18408283C1587D977E8F97 }}
