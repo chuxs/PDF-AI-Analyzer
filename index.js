@@ -142,6 +142,3 @@ app.post("/analyze", upload.single("file_inputName"), async (req, res) => {
   }
 
 });
-
-//remove the calling of listen and export function
-// module.exports = app;
