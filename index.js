@@ -1,19 +1,19 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
+import { dirname } from "path"; 
 import { fileURLToPath } from "url";
 import axios from "axios";
 import multer from "multer";
 import { GoogleGenAI } from "@google/genai";
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app.js";
 import { getDownloadURL, getStorage, ref, uploadBytes, uploadString } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { get } from "http";
 
 const app = express();
 const port = process.env.PORT || 3000;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg";
