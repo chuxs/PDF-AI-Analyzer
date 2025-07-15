@@ -42,7 +42,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const storeBucket = initializeApp(firebaseConfig);
 
-// Initialize Cloud Storage and get a reference to the service
+// Initialize Cloud Storage and get a reference to the service // bucket
 const storage = getStorage(storeBucket);
 
 app.listen(port, () => {
