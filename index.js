@@ -20,6 +20,7 @@ const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg";
 const upload = multer({ storage: multer.memoryStorage() });
 const randomFileID = uuidv4();
 const ai = new GoogleGenAI({ apiKey: API_KEY }); // Initialize Google GenAI with your API key
+const nodeVersion2 = process.versions.node;
 
 // app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -46,7 +47,7 @@ const storeBucket = initializeApp(firebaseConfig);
 const storage = getStorage(storeBucket);
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port} and Node.js version is ${nodeVersion2}`);
 });
 
 app.get("/", (req, res) => {
