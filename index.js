@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 import axios from "axios";
 import multer from "multer";
 import { GoogleGenAI } from "@google/genai";
-import { initializeApp } from "firebase/app.js";
+import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes, uploadString } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { get } from "http";
