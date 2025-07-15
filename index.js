@@ -21,11 +21,12 @@ const upload = multer({ storage: multer.memoryStorage() });
 const randomFileID = uuidv4();
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "Public")));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBLVVVoUjTV8vXJ2nrOSUbiDz1cLLrGlA0",
@@ -138,8 +139,8 @@ app.post("/analyze", upload.single("file_inputName"), async (req, res) => {
         // res.render("index.ejs", { result: error.message });
       });
   }
+
 });
 
 //remove the calling of listen and export function
-
 // module.exports = app;
