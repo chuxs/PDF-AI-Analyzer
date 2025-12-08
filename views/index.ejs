@@ -11,59 +11,54 @@
     <header>
         <nav>
             <div class="logo">
-                <a href="#home"> <img src="images/RemoveBackground.png"> </a>
+                <a href="#home"> <img src="images/RemoveBackground.png" alt="PDF AI Logo"> </a>
             </div>
         </nav>
     </header>
 
     <main>
         <section id="home" class="hero">
-            <h1>Extract, Summarize and Analyze your PDF file with <p class="blurred">AI</p></h1>
+            <h1>Extract, Summarize and Analyze your PDF file with <span class="blurred">AI</span></h1>
             <p>100% free for a max of 4MB pdf files</p>
-            <button class="cta-btn"><a href="#feat">Get Started Below</a></button>
+            <a href="#feat" class="cta-btn">Get Started</a>
         </section>
 
         <section class="features" id="feat">
             <div class="feature-grid">
               
-                <!-- <div class="feature-card feature-nobk">
-                    <img src="images/sampleimage.png" alt="No Background">
-                </div> -->
-
                 <div class="feature-btn">  
                     <form action="/upload" method="POST" class="pdf-action-upload">
-                         <!-- upload pdf file button -->
-                       <label for="file_inputID" class="cta-btn-upload" id="cta-btn-upload-id"> Upload PDF file </label>
-                    
+                        <label for="file_inputID" class="cta-btn-upload" id="cta-btn-upload-id">
+                            <i class="fas fa-cloud-upload-alt" style="margin-right: 8px;"></i>
+                            Upload PDF file
+                        </label>
                     </form>        
 
                     <form action="/analyze" method="POST" class="pdf-action-form" enctype="multipart/form-data">
                         <input type="file" id="file_inputID" name="file_inputName" style="display: none;" accept="application/pdf">
-                       <!-- Enter prompt -->
-                       <input class="titleTextBox" placeholder="Add your prompt here" name="postPrompt"> </input>
-
-                       <button type="submit" class="cta-btn-analyze" id="cta-btn-submit">Send</button> 
+                        <input class="titleTextBox" placeholder="Enter your prompt here..." name="postPrompt">
+                        <button type="submit" class="cta-btn-analyze" id="cta-btn-submit">
+                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                            Analyze
+                        </button> 
                     </form>
                 </div>
             
                 <div class="feature-card feature-bkless">
                     <p id="pdf-name"></p>
-                    
-                    <iframe class="pdf-content" id="pdf-content-id" enctype="multipart/form-data" > </iframe>
+                    <iframe class="pdf-content" id="pdf-content-id" enctype="multipart/form-data"></iframe>
                 </div>
                
             </div>
         </section>  
 
-        <section class="features-output feature-card-output" id="feat">
-            <!-- <textarea class="feature-card-output" placeholder="The output of your prompt will be displayed here!">     </textarea> -->
+        <section class="features-output feature-card-output" id="output">
              <% if (!result) { %>
-                <p class="blog-content"> Your output will be displayed here</p>
+                <p class="blog-content">Your output will appear here after analysis...</p>
              <% } else { %>
                 <p class="blog-content"><%= result %></p>
              <% } %>
         </section>
-
 
     </main>
     <script src="/js/script.js"></script>
