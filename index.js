@@ -6,8 +6,15 @@ import axios from "axios";
 import multer from "multer";
 import { GoogleGenAI } from "@google/genai";
 import { initializeApp } from "firebase/app";
-import { getDownloadURL, getStorage, ref, uploadBytes, uploadString } from "firebase/storage";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+  uploadString,
+} from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
+import 'dotenv/config';
 import { get } from "http";
 
 const app = express();
@@ -16,7 +23,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
-const API_KEY = "AIzaSyAlYG6RdEScz-E1MOEjImCmlwQ-PXrWYRw";
+const API_KEY = process.env.GOOGLE_API_KEY;
 const upload = multer({ storage: multer.memoryStorage() });
 const randomFileID = uuidv4();
 const ai = new GoogleGenAI({ apiKey: API_KEY });
@@ -28,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "Public")));
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBLVVVoUjTV8vXJ2nrOSUbiDz1cLLrGlA0",
+  apiKey: process.env.FIREBASE_KEY,
   authDomain: "temporary-pdf-store.firebaseapp.com",
   projectId: "temporary-pdf-store",
   storageBucket: "temporary-pdf-store.firebasestorage.app",
@@ -80,7 +87,9 @@ app.post("/analyze", upload.single("file_inputName"), async (req, res) => {
         ],
       };
 
-      const apiPDFHandler = await axios.post(`${API_URL}?key=${API_KEY}`, payload,
+      const apiPDFHandler = await axios.post(
+        `${API_URL}?key=${API_KEY}`,
+        payload,
         { headers: { "Content-Type": "application/json" } }
       );
       // console.log(apiPDFHandler.data.candidates[0].content.parts[0].text);
@@ -92,7 +101,9 @@ app.post("/analyze", upload.single("file_inputName"), async (req, res) => {
       console.log(error.message);
     }
   } else {
-    console.log("File size exceeds the limit of 4MB. Going to Firebase Storage.");
+    console.log(
+      "File size exceeds the limit of 4MB. Going to Firebase Storage."
+    );
 
     const uploadedLargefile = req.file.buffer;
 
@@ -100,14 +111,17 @@ app.post("/analyze", upload.single("file_inputName"), async (req, res) => {
 
     uploadBytes(storageRef, uploadedLargefile, {
       contentType: "application/pdf",
-    }).then((snapshot) => {
-      console.log("uploaded rawPDF");
-      return getDownloadURL(storageRef);
-    }).then((url) => {
+    })
+      .then((snapshot) => {
+        console.log("uploaded rawPDF");
+        return getDownloadURL(storageRef);
+      })
+      .then((url) => {
         // You can handle the URL here, e.g., send it to the client or use it for further processing
         async function main() {
-          const pdfResp = await fetch(url)
-          .then((response) => response.arrayBuffer());
+          const pdfResp = await fetch(url).then((response) =>
+            response.arrayBuffer()
+          );
 
           const contents = [
             { text: userPrompt },
@@ -127,7 +141,6 @@ app.post("/analyze", upload.single("file_inputName"), async (req, res) => {
           res.render("index.ejs", { result: response.text });
         }
         main();
-        
       })
       .catch((error) => {
         console.log(error.message);
