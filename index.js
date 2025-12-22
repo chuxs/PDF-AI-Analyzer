@@ -15,8 +15,8 @@ const port = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
-const API_KEY = "AIzaSyAKOhMfY55r1UpBEGIQ7a5cazUDJTP3RVg";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+const API_KEY = "AIzaSyAlYG6RdEScz-E1MOEjImCmlwQ-PXrWYRw";
 const upload = multer({ storage: multer.memoryStorage() });
 const randomFileID = uuidv4();
 const ai = new GoogleGenAI({ apiKey: API_KEY });
